@@ -30,6 +30,10 @@ public class App {
                 writeArticle();
             } else if (cmd.equals("list")) {
                 listArticles();
+            } else if (cmd.startsWith("detail ")) {
+                String[] cmdBits = cmd.split(" ");
+                int id = Integer.parseInt(cmdBits[1]);
+                showDetail(id);
             }
         }
 
@@ -68,6 +72,20 @@ public class App {
                     article.getTitle(),
                     article.getRegDate());
         }
+    }
+
+    private void showDetail(int id) {
+        Article article = findArticleById(id);
+
+        if (article == null) {
+            System.out.println(id + "번 게시글은 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.println("번호: " + article.getId());
+        System.out.println("제목: " + article.getTitle());
+        System.out.println("내용: " + article.getContent());
+        System.out.println("등록일: " + article.getRegDate());
     }
 
     private Article findArticleById(int id) {
