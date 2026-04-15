@@ -38,6 +38,10 @@ public class App {
                 String[] cmdBits = cmd.split(" ");
                 int id = Integer.parseInt(cmdBits[1]);
                 updateArticle(id);
+            } else if (cmd.startsWith("delete ")) {
+                String[] cmdBits = cmd.split(" ");
+                int id = Integer.parseInt(cmdBits[1]);
+                deleteArticle(id);
             }
         }
 
@@ -110,6 +114,18 @@ public class App {
         article.setContent(newContent);
 
         System.out.println("=> " + id + "번 게시글이 수정되었습니다.");
+    }
+
+    private void deleteArticle(int id) {
+        Article article = findArticleById(id);
+
+        if (article == null) {
+            System.out.println(id + "번 게시글은 존재하지 않습니다.");
+            return;
+        }
+
+        articles.remove(article);
+        System.out.println("=> " + id + "번 게시글이 삭제되었습니다.");
     }
 
     private Article findArticleById(int id) {
