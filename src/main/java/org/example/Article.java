@@ -25,7 +25,7 @@ public class Article {
     }
 
     public String getRegDate() {
-        return regDate;
+        return reqDate;
     }
 
     public void setTitle(String title) {
