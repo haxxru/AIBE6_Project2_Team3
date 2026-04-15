@@ -34,6 +34,10 @@ public class App {
                 String[] cmdBits = cmd.split(" ");
                 int id = Integer.parseInt(cmdBits[1]);
                 showDetail(id);
+            } else if (cmd.startsWith("update ")) {
+                String[] cmdBits = cmd.split(" ");
+                int id = Integer.parseInt(cmdBits[1]);
+                updateArticle(id);
             }
         }
 
@@ -86,6 +90,26 @@ public class App {
         System.out.println("제목: " + article.getTitle());
         System.out.println("내용: " + article.getContent());
         System.out.println("등록일: " + article.getRegDate());
+    }
+
+    private void updateArticle(int id) {
+        Article article = findArticleById(id);
+
+        if (article == null) {
+            System.out.println(id + "번 게시글은 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.print("새 제목: ");
+        String newTitle = scanner.nextLine().trim();
+
+        System.out.print("새 내용: ");
+        String newContent = scanner.nextLine().trim();
+
+        article.setTitle(newTitle);
+        article.setContent(newContent);
+
+        System.out.println("=> " + id + "번 게시글이 수정되었습니다.");
     }
 
     private Article findArticleById(int id) {
