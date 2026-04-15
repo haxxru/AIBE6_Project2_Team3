@@ -69,4 +69,14 @@ public class App {
                     article.getRegDate());
         }
     }
+
+    private Article findArticleById(int id) {
+        for (Article article : articles) {
+            if (article.getId() == id) {
+                return article;
+            }
+        }
+
+        return null;
+    }
 }
