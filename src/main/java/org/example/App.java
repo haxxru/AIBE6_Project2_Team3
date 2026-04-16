@@ -23,25 +23,28 @@ public class App {
             System.out.print("명령어: ");
             String cmd = scanner.nextLine().trim();
 
-            if (cmd.equals("exit")) {
+            if (cmd.isEmpty()) {
+                continue;
+            }
+
+            Rq rq = new Rq(cmd);
+            String actionName = rq.getActionName();
+
+            if (actionName.equals("exit")) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
-            } else if (cmd.equals("write")) {
+            } else if (actionName.equals("write")) {
                 writeArticle();
-            } else if (cmd.equals("list")) {
+            } else if (actionName.equals("list")) {
                 listArticles();
-            } else if (cmd.startsWith("detail ")) {
-                String[] cmdBits = cmd.split(" ");
-                int id = Integer.parseInt(cmdBits[1]);
-                showDetail(id);
-            } else if (cmd.startsWith("update ")) {
-                String[] cmdBits = cmd.split(" ");
-                int id = Integer.parseInt(cmdBits[1]);
-                updateArticle(id);
-            } else if (cmd.startsWith("delete ")) {
-                String[] cmdBits = cmd.split(" ");
-                int id = Integer.parseInt(cmdBits[1]);
-                deleteArticle(id);
+            } else if (actionName.equals("detail")) {
+                showDetail(rq.getId());
+            } else if (actionName.equals("update")) {
+                updateArticle(rq.getId());
+            } else if (actionName.equals("delete")) {
+                deleteArticle(rq.getId());
+            } else {
+                System.out.println("존재하지 않는 명령어입니다.");
             }
         }
 
