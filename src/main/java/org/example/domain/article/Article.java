@@ -1,17 +1,20 @@
-package org.example;
+package org.example.domain.article;
 
 public class Article {
     private int id;
     private String title;
     private String content;
-    private String reqDate;
+    private String regDate;
+    private int count;
 
-    public Article(int id, String title, String content, String reqDate) {
+    public Article(int id, String title, String content, String regDate) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.reqDate = reqDate;
+        this.regDate = regDate;
+        this.count = 0;
     }
+
     public int getId() {
         return id;
     }
@@ -25,7 +28,11 @@ public class Article {
     }
 
     public String getRegDate() {
-        return reqDate;
+        return regDate;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public void setTitle(String title) {
@@ -35,5 +42,8 @@ public class Article {
     public void setContent(String content) {
         this.content = content;
     }
-}
 
+    public void increaseCount() {
+        count++;
+    }
+}

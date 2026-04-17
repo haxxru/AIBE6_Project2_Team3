@@ -1,13 +1,13 @@
-package org.example;
+package org.example.util;
 
 public class Rq {
     private String actionName;
-    private String[] cmdBits;
+    private String[] commandParts;
 
-    public Rq(String cmd) {
-        cmd = cmd.trim();
-        cmdBits = cmd.split(" ");
-        actionName = cmdBits[0];
+    public Rq(String command) {
+        command = command.trim();
+        commandParts = command.split(" ");
+        actionName = commandParts[0];
     }
 
     public String getActionName() {
@@ -15,10 +15,10 @@ public class Rq {
     }
 
     public String getIdStr() {
-        if (cmdBits.length < 2) {
+        if (commandParts.length < 2) {
             return "";
         }
-        return cmdBits[1];
+        return commandParts[1];
     }
 
     public int getId() {
